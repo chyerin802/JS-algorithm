@@ -2,23 +2,16 @@ const fs = require('fs')
 
 const input = fs.readFileSync('/dev/stdin').toString().split('\n')
 
-const start = input[0].split(' ')
-const startHour = Number(start[0])
-const startMinute = Number(start[1])
+const [startHour, startMinute] = input[0].split(' ').map(Number);
 const ovenTime = Number(input[1])
 
 const end = (hour, minute, time) => {
-    let endHour = hour + parseInt(time / 60)
-    let endMinute = minute + (time % 60)
+    let totalMinute = hour * 60 + minute + time
+    totalMinute %= 1440 // '일 단위는 제외'
     
-    if(endMinute >= 60){
-        endHour += 1
-        endMinute -= 60
-    }
+    let endHour = parseInt(totalMinute / 60)
+    let endMinute = totalMinute % 60
     
-    if(endHour >= 24){
-            endHour -= 24
-    }
     
     console.log(endHour+' '+endMinute)
 }
