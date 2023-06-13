@@ -8,10 +8,7 @@ for(let i=1; i<=n; i++){
     judgeArr.push({ age: Number(age), name })
 }
 
-judgeArr.sort((a, b) => {
-    if(a.age !== b.age) return a.age - b.age
-    else return 0
-})
+judgeArr.sort((a, b) => a.age - b.age )
 
 let result = ''
 judgeArr.map((judge) => result += `${judge.age} ${judge.name}\n`)
