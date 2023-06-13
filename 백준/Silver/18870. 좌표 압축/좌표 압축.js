@@ -1,18 +1,16 @@
-const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+const fs = require('fs')
+const input = fs.readFileSync('/dev/stdin').toString().split('\n')
 
-const N = +input.shift();
+const n = Number(input[0]);
+const data = input[1].split(' ').map(Number)
 
-const setArr = input[0].split(' ').map(Number).sort((a,b)=>a-b);
-const set = new Set(setArr);
-const map = new Map();
+const uniqueData = [...new Set(data)];
+uniqueData.sort((a, b) => a - b);
 
-[...set].forEach((item, index) => {
-    map.set(item, index);
-})
+let map = new Map();
+uniqueData.map((num, index) => map.set(num, index))
 
-let answer = '';
-input[0].split(' ').forEach((item, index) => {
-   answer += map.get(+item) + ' ';
-})
+let result = ''
+data.map((x) => result += map.get(x) + ' ')
 
-console.log(answer);
+console.log(result)
