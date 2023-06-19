@@ -1,23 +1,19 @@
-const fs = require('fs');
-let [N, ...nums] = fs.readFileSync('dev/stdin').toString().trim().split(/\s+/).map(Number);
+const fs = require('fs')
+const input = fs.readFileSync('/dev/stdin').toString().split('\n')
 
-let price = nums.shift();
-nums.sort((a, b) => b - a);
+let [n, k] = input[0].split(' ').map(Number)
+const coins = input.slice(1).map(Number)
 
-let count = 0;
+let answer = 0;
 
-for (let i = 0; i < nums.length; i++) {
-  if (price < nums[i]) {
-    continue;
-  } else {
-    const value = Math.floor(price / nums[i]);
-    price -= value * nums[i];
-    count += value;
-
-    if (price === 0) {
-      break;
-    }
-  }
+while(k > 0){
+    let count = parseInt(k / coins[n - 1]);
+    
+    k -= count * coins[n - 1];
+    answer += count;
+    n--;
 }
+
+console.log(answer)
 
 console.log(count);
