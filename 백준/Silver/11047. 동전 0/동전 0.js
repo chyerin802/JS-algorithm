@@ -6,14 +6,9 @@ const coins = input.slice(1).map(Number)
 
 let answer = 0;
 
-while(k > 0){
-    let count = parseInt(k / coins[n - 1]);
-    
-    k -= count * coins[n - 1];
-    answer += count;
-    n--;
+for(let i = n - 1; i >= 0; i--){
+    answer += parseInt(k / coins[i])
+    k %= coins[i]
 }
 
 console.log(answer)
-
-console.log(count);
