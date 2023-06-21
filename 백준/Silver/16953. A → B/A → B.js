@@ -1,29 +1,26 @@
-const fs = require("fs");
-const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim().split(" ");
+const fs = require('fs')
+const input = fs.readFileSync('/dev/stdin').toString().split('\n')
 
-let initialValue = input[0];
-let target = input[1];
-let result = 0;
+const [a, b] = input[0].split(' ').map(Number)
+let answer = 1;
+let cur = b;
 
-while (true) {
-    if (initialValue === target) {
-        break;
-    } else if (Number(target) < Number(initialValue)) { // 목표값이 더 크면
-        return console.log(-1);
+while(cur > a){
+    let curStr = String(cur)
+    
+    if(cur % 2 === 0){
+        cur = cur / 2
+    }else if(curStr[curStr.length - 1] === '1'){
+        cur = Number(curStr.slice(0, curStr.length - 1))
+    }else{
+        break
     }
-
-    if (target % 2 === 0) { // 2로 나눈 나머지가 0이면 
-        target = String(target / 2);
-    } else if (target % 2 === 1) { // 2로 나눈 나머지가 1이면
-        if (target[target.length - 1] === "1") { // 마지막 자리가 1이면
-            target = target.slice(0, target.length - 1);
-        } else { // 마지막 자리가 1이 아니면
-            return console.log(-1);
-        }
-    }
-
-    result++;
+    
+    answer++
 }
 
-console.log(result + 1);
+if(cur === a){
+    console.log(answer)
+}else{
+  console.log(-1)
+}
