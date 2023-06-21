@@ -1,15 +1,14 @@
 const fs = require('fs')
 const input = fs.readFileSync('/dev/stdin').toString().split('\n')
 
-const [a, b] = input[0].split(' ').map(Number)
+let [a, b] = input[0].split(' ').map(Number)
 let answer = 1;
-let cur = b;
 
-while(cur > a){
-    if(cur % 2 === 0){
-        cur = cur / 2
-    }else if(cur % 10 === 1){
-        cur = parseInt(cur / 10)
+while(b > a){
+    if(b % 2 === 0){
+        b = b / 2
+    }else if(b % 10 === 1){
+        b = parseInt(b / 10)
     }else{
         break
     }
@@ -17,7 +16,7 @@ while(cur > a){
     answer++
 }
 
-if(cur === a){
+if(b === a){
     console.log(answer)
 }else{
   console.log(-1)
