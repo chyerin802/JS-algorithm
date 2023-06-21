@@ -6,12 +6,10 @@ let answer = 1;
 let cur = b;
 
 while(cur > a){
-    let curStr = String(cur)
-    
     if(cur % 2 === 0){
         cur = cur / 2
-    }else if(curStr[curStr.length - 1] === '1'){
-        cur = Number(curStr.slice(0, curStr.length - 1))
+    }else if(cur % 10 === 1){
+        cur = parseInt(cur / 10)
     }else{
         break
     }
