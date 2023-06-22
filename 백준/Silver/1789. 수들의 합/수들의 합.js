@@ -6,7 +6,7 @@ let n = 1;
 
 while(true){
     let sum = n * (n + 1) / 2
-    if( s === sum || s <= sum + n){
+    if( s <= sum + n){
         console.log(n)
         break
     }
